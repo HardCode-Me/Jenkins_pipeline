@@ -2,7 +2,7 @@ pipeline {
   agent {
 
     docker {
-      image '51.250.99.70:5000/tomcat:v1'
+      image '130.193.41.165:8123/tomcat:v1'
       args '-v /var/run/docker.sock:/var/run/docker.sock -u root'
     }
   }
@@ -26,7 +26,7 @@ pipeline {
       steps {
          sh 'cd /var/lib/jenkins/workspace/test/target/ && cp hello-1.0.war /var/lib/jenkins/workspace/test'
          sh 'cd /var/lib/jenkins/workspace/test && docker build -t myweb2:v1 .'
-         sh '''docker tag myweb2:v1 51.250.99.70:5000/myweb2:v001 && docker push 51.250.99.70:5000/myweb2:v1'''
+         sh '''docker tag myweb2:v1 130.193.41.165:8123/myweb2:v001 && docker push 130.193.41.165:8123/myweb2:v1'''
       }
     }
 
@@ -34,8 +34,8 @@ pipeline {
       steps {
         sh 'ssh-keyscan 51.250.21.24 >> ~/.ssh/known_hosts'
         sh '''ssh root@51.250.21.24 /bin/bash << EOF
-         docker pull 51.250.99.70:5000/myweb2:v1
-         docker run -d -p 8085:8080 51.250.99.70:5000/myweb2:v1
+         docker pull 130.193.41.165:8123/myweb2:v1
+         docker run -d -p 8085:8080 130.193.41.165:8123/myweb2:v1
 EOF'''
       }
     }
