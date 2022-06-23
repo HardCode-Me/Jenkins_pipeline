@@ -36,8 +36,7 @@ pipeline {
         sh '''ssh root@51.250.21.24 /bin/bash << EOF
          docker pull 51.250.99.70:5000/myweb2:v1
          docker run -d -p 8085:8080 51.250.99.70:5000/myweb2:v1
-EOF
-                 '''
+EOF'''
       }
     }
   }
