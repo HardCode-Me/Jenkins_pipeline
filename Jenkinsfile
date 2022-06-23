@@ -2,7 +2,7 @@ pipeline {
   agent {
 
     docker {
-      image '84.201.178.11:5000/tomcat:v1'
+      image '51.250.99.70:5000/tomcat:v1'
       args '-v /var/run/docker.sock:/var/run/docker.sock -u root'
     }
   }
